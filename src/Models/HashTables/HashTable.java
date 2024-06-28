@@ -54,7 +54,7 @@ public class HashTable {
     }
 
     public Integer hashingMultiplication (Integer value){
-        int hash = (value * 666) % tablaHash.length;
+        int hash = (value * 601) % tablaHash.length;
         //System.out.println(hash);
         return hash;
     }
