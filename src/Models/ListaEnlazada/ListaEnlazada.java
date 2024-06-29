@@ -1,5 +1,7 @@
 package Models.ListaEnlazada;
 
+import Models.Bussiness.Bussines;
+
 public class ListaEnlazada {
     private Node head;
     private int count;
@@ -9,7 +11,7 @@ public class ListaEnlazada {
         this.count = 0;
     }
 
-    public void addNode (String valor){
+    public void addNode (Bussines valor){
         Node nodo = new Node(valor);
         Node current;
         if(this.head == null)

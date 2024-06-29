@@ -1,9 +1,11 @@
 package Models.ListaEnlazada;
 
+import Models.Bussiness.Bussines;
+
 public class Node {
-    public String value;
+    public Bussines value;
     public Node next;
-    public Node (String valor){
+    public Node (Bussines valor){
         this.value = valor;
         this.next = null;
     }

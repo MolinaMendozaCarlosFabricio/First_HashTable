@@ -4,46 +4,26 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import Models.Bussiness.Bussines;
 import Models.HashTables.HashTable;
+import Models.HashTables.HashTable2;
 import Models.ListaEnlazada.ListaEnlazada;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main (String[] args){
-        Scanner entrada = new Scanner (System.in);
-        HashTable hashTableD = new HashTable();
-        HashTable hashTableM = new HashTable();
-        String line = "";
-        String splitBy = ",";
-        
-        try
-        {
-            BufferedReader br = new BufferedReader(new FileReader("bussines.csv"));
-            while ((line = br.readLine()) != null)   //returns a Boolean value
-            {
-                String[] bussines = line.split(splitBy);    // use comma as separator
-                hashTableD.setValueDivition(bussines[0], bussines[1]);
-                hashTableM.setValueMultiplication(bussines[0], bussines[1]);   
-            }
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        
-        int opcion;
-        System.out.println("Hashing por division: 1");
-        System.out.println("Hashing por multiplicacion: 2");
-        opcion = entrada.nextInt();
-        if(opcion == 1){
-            System.out.println("Hashing por division");
-            optionsHashD(hashTableD);
-        }
-        if(opcion == 2){
-            System.out.println("Hashing por multiplicacion");
-            optionHashM(hashTableM);
-        }   
+        Scanner entrada = new Scanner(System.in);
+        int options;
+        do{
+            System.out.println("Ingrese el tipo de lista enlazada");
+            System.out.println("1. Mi lista enlazada    2. Lista enlazada de Java   3. Salir");
+            options = entrada.nextInt();
+            if(options == 1)
+                myLinkedList();
+            if(options == 2)
+                javasLinkedList();
+        }while(options == 1 || options == 2);
     }
     public static void optionsHashD(HashTable tablaHash){
         Scanner entrada = new Scanner (System.in);
@@ -79,4 +59,123 @@ public class Main {
             tabla.shearchHashM(search);
         }
     }
+
+    public static void myLinkedList (){
+        Scanner entrada = new Scanner (System.in);
+        HashTable hashTableD = new HashTable();
+        HashTable hashTableM = new HashTable();
+        String line = "";
+        String splitBy = ",";
+
+        try
+        {
+            BufferedReader br = new BufferedReader(new FileReader("bussines.csv"));
+            while ((line = br.readLine()) != null)   //returns a Boolean value
+            {
+                String[] bussines = line.split(splitBy);// use comma as separator
+                Bussines objBuss = new Bussines(bussines[0], bussines[1]);
+                hashTableD.setValueDivition(bussines[0], objBuss);
+                hashTableM.setValueMultiplication(bussines[0], objBuss);
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        int opcion;
+        do{
+            System.out.println("Hashing por division: 1");
+            System.out.println("Hashing por multiplicacion: 2");
+            System.out.println("Salr: 3");
+            opcion = entrada.nextInt();
+            if(opcion == 1){
+                System.out.println("Hashing por division");
+                optionsHashD(hashTableD);
+            }
+            if(opcion == 2){
+                System.out.println("Hashing por multiplicacion");
+                optionHashM(hashTableM);
+
+            }
+        }while (opcion == 1 || opcion == 2);
+    }
+
+    public static void javasLinkedList (){
+        Scanner entrada = new Scanner (System.in);
+        HashTable2 hashTableD = new HashTable2();
+        HashTable2 hashTableM = new HashTable2();
+        String line = "";
+        String splitBy = ",";
+
+        try
+        {
+            BufferedReader br = new BufferedReader(new FileReader("bussines.csv"));
+            while ((line = br.readLine()) != null)   //returns a Boolean value
+            {
+                String[] bussines = line.split(splitBy);// use comma as separator
+                Bussines objBuss = new Bussines(bussines[0], bussines[1]);
+                hashTableD.setValueDivition(bussines[0], objBuss);
+                hashTableM.setValueMultiplication(bussines[0], objBuss);
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        int opcion;
+        do{
+            System.out.println("Hashing por division: 1");
+            System.out.println("Hashing por multiplicacion: 2");
+            System.out.println("Salir: 3");
+            opcion = entrada.nextInt();
+            if(opcion == 1){
+                System.out.println("Hashing por division");
+                optionsHashD2(hashTableD);
+            }
+            if(opcion == 2){
+                System.out.println("Hashing por multiplicacion");
+                optionHashM2(hashTableM);
+            }
+        }while (opcion == 1 || opcion == 2);
+
+    }
+
+    public static void optionsHashD2(HashTable2 tablaHash){
+        Scanner entrada = new Scanner (System.in);
+        Scanner scanner = new Scanner (System.in);
+        System.out.println("1. Imprimir toda la tabla   2. Buscar valor");
+        int option = entrada.nextInt();
+        if(option == 1){
+            for(int i = 0; i < tablaHash.tablaHash.length; i++){
+                System.out.println("Index: " + i);
+                tablaHash.recorrido(i);
+            }
+        }
+        if(option == 2){
+            System.out.println("Ingrese clave");
+            String search = scanner.nextLine();
+            tablaHash.shearchHashD(search);
+        }
+    }
+
+    public static void optionHashM2(HashTable2 tabla){
+        Scanner entrada = new Scanner (System.in);
+        Scanner scanner = new Scanner (System.in);
+        System.out.println("1. Imprimir toda la tabla   2. Buscar valor");
+        int option = entrada.nextInt();
+        if(option == 1){
+            for(int i = 0; i < tabla.tablaHash.length; i++){
+                System.out.println("Index: " + i);
+                tabla.recorrido(i);
+            }
+        }
+        if(option == 2){
+            System.out.println("Ingrese clave");
+            String search = scanner.nextLine();
+            tabla.shearchHashM(search);
+        }
+    }
+
 }
