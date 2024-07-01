@@ -31,15 +31,23 @@ public class Main {
         System.out.println("1. Imprimir toda la tabla   2. Buscar valor");
         int option = entrada.nextInt();
         if(option == 1){
+            long inicio = System.currentTimeMillis();
             for(int i = 0; i < tablaHash.tablaHash.length; i++){
                 System.out.println("Index: " + i);
                 tablaHash.recorrido(i);
             }
+            long fin = System.currentTimeMillis();
+            double tiempo = (double) (fin - inicio) / 1000f;
+            System.out.println("Tiempo de ejecución: " + tiempo + " segundos");
         }
         if(option == 2){
             System.out.println("Ingrese clave");
             String search = scanner.nextLine();
+            long inicio = System.currentTimeMillis();
             tablaHash.shearchHashD(search);
+            long fin = System.currentTimeMillis();
+            double tiempo = (double) (fin - inicio) / 1000f;
+            System.out.println("Tiempo de ejecución: " + tiempo + " segundos");
         }
     }
     public static void optionHashM(HashTable tabla){
@@ -48,15 +56,23 @@ public class Main {
         System.out.println("1. Imprimir toda la tabla   2. Buscar valor");
         int option = entrada.nextInt();
         if(option == 1){
+            long inicio = System.currentTimeMillis();
             for(int i = 0; i < tabla.tablaHash.length; i++){
                 System.out.println("Index: " + i);
                 tabla.recorrido(i);
             }
+            long fin = System.currentTimeMillis();
+            double tiempo = (double) (fin - inicio) / 1000f;
+            System.out.println("Tiempo de ejecución: " + tiempo + " segundos");
         }
         if(option == 2){
             System.out.println("Ingrese clave");
             String search = scanner.nextLine();
+            long inicio = System.currentTimeMillis();
             tabla.shearchHashM(search);
+            long fin = System.currentTimeMillis();
+            double tiempo = (double) (fin - inicio) / 1000f;
+            System.out.println("Tiempo de ejecución: " + tiempo + " segundos");
         }
     }
 
@@ -108,6 +124,7 @@ public class Main {
         String line = "";
         String splitBy = ",";
 
+        long inicio = System.currentTimeMillis();
         try
         {
             BufferedReader br = new BufferedReader(new FileReader("bussines.csv"));
@@ -116,6 +133,25 @@ public class Main {
                 String[] bussines = line.split(splitBy);// use comma as separator
                 Bussines objBuss = new Bussines(bussines[0], bussines[1]);
                 hashTableD.setValueDivition(bussines[0], objBuss);
+
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        long fin = System.currentTimeMillis();
+        double tiempo = (double) (fin - inicio) / 1000; // Convertir a segundos
+        System.out.println("Tiempo de lectura de la tabla hash en java, por hashing de división: " + tiempo + " segundos");
+
+        try
+        {
+            BufferedReader br = new BufferedReader(new FileReader("bussines.csv"));
+            while ((line = br.readLine()) != null)   //returns a Boolean value
+            {
+                String[] bussines = line.split(splitBy);// use comma as separator
+                Bussines objBuss = new Bussines(bussines[0], bussines[1]);
+
                 hashTableM.setValueMultiplication(bussines[0], objBuss);
             }
         }
@@ -148,15 +184,23 @@ public class Main {
         System.out.println("1. Imprimir toda la tabla   2. Buscar valor");
         int option = entrada.nextInt();
         if(option == 1){
+            long inicio = System.currentTimeMillis();
             for(int i = 0; i < tablaHash.tablaHash.length; i++){
                 System.out.println("Index: " + i);
                 tablaHash.recorrido(i);
             }
+            long fin = System.currentTimeMillis();
+            double tiempo = (double) (fin - inicio) / 1000f;
+            System.out.println("Tiempo de ejecución: " + tiempo + " segundos");
         }
         if(option == 2){
             System.out.println("Ingrese clave");
             String search = scanner.nextLine();
+            long inicio = System.currentTimeMillis();
             tablaHash.shearchHashD(search);
+            long fin = System.currentTimeMillis();
+            double tiempo = (double) (fin - inicio) / 1000f;
+            System.out.println("Tiempo de ejecución: " + tiempo + " segundos");
         }
     }
 
@@ -166,15 +210,23 @@ public class Main {
         System.out.println("1. Imprimir toda la tabla   2. Buscar valor");
         int option = entrada.nextInt();
         if(option == 1){
+            long inicio = System.currentTimeMillis();
             for(int i = 0; i < tabla.tablaHash.length; i++){
                 System.out.println("Index: " + i);
                 tabla.recorrido(i);
             }
+            long fin = System.currentTimeMillis();
+            double tiempo = (double) (fin - inicio) / 1000f;
+            System.out.println("Tiempo de ejecución: " + tiempo + " segundos");
         }
         if(option == 2){
             System.out.println("Ingrese clave");
             String search = scanner.nextLine();
+            long inicio = System.nanoTime();
             tabla.shearchHashM(search);
+            long fin = System.nanoTime();
+            double tiempo = (double) (fin - inicio) / 1000000000f;
+            System.out.println(tiempo + "seg");
         }
     }
 
